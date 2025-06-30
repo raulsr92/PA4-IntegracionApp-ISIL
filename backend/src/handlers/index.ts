@@ -5,6 +5,7 @@ import User from '../models/User'
 /* Clase 09/06/25 */
 import { checkPassword, hashPassword } from "../utils/auth"
 import slug from "slug"
+import { generateJWT } from "../utils/jwt"
 
 
 export const createAccount = async(req:Request, res:Response)=>{
@@ -87,6 +88,7 @@ export const login = async(req:Request, res:Response)=>{
         return res.status(401).json({error: error.message})
     }
 
-    res.send("Autenticado....")
+    const token = generateJWT({id: user._id})
+    res.send(token)
 
 }

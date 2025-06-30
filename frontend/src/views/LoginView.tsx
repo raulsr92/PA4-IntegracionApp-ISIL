@@ -22,7 +22,8 @@ export default function LoginView() {
         try {
             const {data} = await api.post(`/auth/login`, formData)
             // console.log(data)
-            toast.success(data)
+            // toast.success(data)
+            localStorage.setItem("AUTH_TOKEN", data)
             
         } catch (error) {
             // console.log(error)
